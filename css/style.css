@@ -1,13 +1,72 @@
+/* Обнуляем стили браузера */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    overflow-x: hidden;
+}
+
+.app {
+    width: 100vw;
+    height: 100vh;
+}
+
+.container {
+    max-width: 1170px;
+    padding: 0 15px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+
+/* Стили для шапки страницы */
+
+.header {
+    width: 100%;
+    text-align: center;
+    background-color: rgb(2, 152, 25);
+    padding: 10px 0;
+}
+
+.header__title {
+    color: #fff;
+    font-size: 42px;
+}
+
+
+/* Стили для тела страницы */
+
+.main__header {
+    background-color: #ccc;
+    padding: 10px 5px;
+}
+
+.contacts__search {
+    width: 100%;
+    height: 40px;
+    padding: 5px 5px 5px 60px;
+    background: #fff url(../img/search.svg)no-repeat left 15px center;
+    background-size: 30px;
+    font-size: 25px;
+    outline: none;
+}
+
+
 /* Кнопка для создания нового Usera */
 
-.creat-user-btn {
+.creat-newUser {
     position: fixed;
-    top: 20px;
-    left: 20px;
+    bottom: 20px;
+    right: 20px;
     width: 65px;
     height: 65px;
     border-radius: 50%;
-    background-color: rgb(5, 78, 234);
+    background-color: rgb(2, 152, 25);
     border: none;
     color: #fff;
     text-align: center;
@@ -17,36 +76,40 @@
     outline: none;
 }
 
-.creat-user-btn:hover {
+.creat-newUser:hover {
     opacity: 0.65;
 }
 
-.creat-user-btn:active {
+.creat-newUser:active {
     transform: scale(0.9);
 }
 
 
 /* Моальное окно для создания нового Userf */
 
-.form-title {
-    font-size: 35px;
+.form__container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.126);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .form-user {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    padding: 25px;
-    transform: translate(-50%, -50%);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: #ccc;
+    background-color: rgb(69, 69, 69);
+    padding: 25px;
 }
 
 .user__input {
-    margin: 10px 0;
+    margin: 25px 0;
     width: 350px;
     height: 40px;
     padding-left: 8px;
@@ -57,4 +120,218 @@
     width: 350px;
     height: 40px;
     padding-left: 8px;
+}
+
+
+/* Стили карточки */
+
+.card {
+    display: grid;
+    grid-template-columns: 60px 1fr 1fr 1fr 40px 40px 40px;
+    grid-column-gap: 25px;
+    border-bottom: 1px solid #ccc;
+    height: 60px;
+    padding: 5px 15px;
+    align-items: center;
+    justify-items: center;
+}
+
+.number__user {
+    font-size: 48px;
+}
+
+.name__user {
+    font-size: 25px;
+    width: 100%;
+    max-width: 212px;
+    white-space: nowrap;
+    overflow: hidden;
+    padding: 5px;
+    text-overflow: ellipsis;
+}
+
+.phone__user {
+    font-size: 16px;
+    color: black;
+    text-decoration: none;
+}
+
+.email__user {
+    font-size: 16px;
+    color: black;
+    text-decoration: none;
+}
+
+.show {
+    width: 50px;
+    height: 50px;
+    background: url(../img/show.png)no-repeat center center/cover;
+    border-radius: 50%;
+    cursor: pointer;
+    outline: none;
+}
+
+.remove,
+.edit {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    font-size: 30px;
+    cursor: pointer;
+    outline: none;
+}
+
+.remove {
+    background-color: red;
+    color: white;
+}
+
+.edit {
+    background-color: #fff;
+}
+
+.show__user {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.126);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.user__block {
+    width: 350px;
+    border: 1px solid #000;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 10px 15px;
+    border-radius: 8px;
+    background-color: #fff;
+    position: relative;
+}
+
+.img {
+    width: 200px;
+    margin-bottom: 25px;
+}
+
+.name {
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+.email,
+.phone {
+    font-size: 22px;
+    margin-bottom: 5px;
+    color: #ccc;
+    text-decoration: none;
+}
+
+.close {
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    font-size: 35px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: block;
+    background-color: red;
+    color: white;
+    cursor: pointer;
+    outline: none;
+}
+
+
+/* Loaders */
+
+#cube-loader {
+    align-items: center;
+    display: flex;
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+#cube-loader .caption {
+    margin: 0 auto;
+}
+
+.cube-loader {
+    width: 73px;
+    height: 73px;
+    margin: 0 auto;
+    margin-top: 49px;
+    position: relative;
+    transform: rotateZ(45deg);
+}
+
+.cube-loader .cube {
+    position: relative;
+    transform: rotateZ(45deg);
+    width: 50%;
+    height: 50%;
+    float: left;
+    transform: scale(1.1);
+}
+
+.cube-loader .cube:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(52, 73, 94, 1.0);
+    animation: cube-loader 2.76s infinite linear both;
+    transform-origin: 100% 100%;
+}
+
+.cube-loader .loader-2 {
+    transform: scale(1.1) rotateZ(90deg);
+}
+
+.cube-loader .loader-3 {
+    transform: scale(1.1) rotateZ(180deg);
+}
+
+.cube-loader .loader-4 {
+    transform: scale(1.1) rotateZ(270deg);
+}
+
+.cube-loader .loader-2:before {
+    animation-delay: 0.35s;
+}
+
+.cube-loader .loader-3:before {
+    animation-delay: 0.69s;
+}
+
+.cube-loader .loader-4:before {
+    animation-delay: 1.04s;
+}
+
+@keyframes cube-loader {
+    0%,
+    10% {
+        transform: perspective(136px) rotateX(-180deg);
+        opacity: 0;
+    }
+    25%,
+    75% {
+        transform: perspective(136px) rotateX(0deg);
+        opacity: 1;
+    }
+    90%,
+    100% {
+        transform: perspective(136px) rotateY(180deg);
+        opacity: 0;
+    }
 }
