@@ -148,7 +148,7 @@ class ContactsApp extends Contacts {
                                         <img src='./img/man.png' alt="user" class="img">
                                         <p class="name">${obj.name}</p>
                                         <a href = 'tel:${obj.phone}' class="phone">${obj.phone}</a>
-                                         <a href = 'mailto:${obj.email}' class="email">${obj.email}</a>
+                                        <a href = 'mailto:${obj.email}' class="email">${obj.email}</a>
                                         <button class="close">&#10008</button>
                                     </div>` //добовляю контент;
         modalWindowUser.querySelector('.close').addEventListener('click', () => {
@@ -197,6 +197,35 @@ class ContactsApp extends Contacts {
         form.addEventListener('submit', this.addUser.bind(this));
     }
 
+    searchContacts(event){
+        event.preventDefault();
+        let searchValue = event.currentTarget.value.toLowerCase();
+        const users =JSON.parse(localStorage.getItem('users'));
+        const usersSearch=[];
+
+        users.find(item=>{
+            if(item.name.toLowerCase().includes(searchValue)){
+                usersSearch.push(item)}
+        })
+    
+        const mainBody = document.querySelector('.main__body'); //находим mainBody
+        mainBody.innerHTML = ''; //отчищаем от контента mainBody
+        for (let i = 0; i < usersSearch.length; i++) { // перебираем массив с юзерами и создаем для каждого свою карточку
+            const card = document.createElement('div');
+            card.classList.add('card');
+            card.innerHTML = `  <span class="number__user">${i+1}</span>
+                                <p class="name__user">${usersSearch[i].name}</p>
+                                <a href = 'tel:${usersSearch[i].phone}' class="phone__user">${usersSearch[i].phone}</a>
+                                <a href = 'mailto:${usersSearch[i].email}' class="email__user">${usersSearch[i].email}</a>
+                                <button class="show"></button>
+                                <button class="remove">&#10008</button>
+                                <button class="edit">&#9998;</button>`
+            mainBody.appendChild(card);
+            card.querySelector('.show').addEventListener('click', this.showContact.bind(this)) //вешакм прослушиватель на кнопки
+            card.querySelector('.remove').addEventListener('click', this.removeContact.bind(this))
+            card.querySelector('.edit').addEventListener('click', this.editContact.bind(this))
+        }
+    }
 
     createStructure() { //Создаем структуру сайта и отрисовываем ее
         const app = document.createElement('div'); //Создаем главный div
@@ -211,7 +240,9 @@ class ContactsApp extends Contacts {
                         <main class="main">
                             <header class="main__header">
                                 <div class="container">
-                                    <input class="contacts__search" type="text" placeholder="Поиск контакта">
+                                    <form action="#" class = "submit__search">
+                                        <input class="contacts__search" type="text" placeholder="Поиск контакта">
+                                    </form>
                                 </div>
                             </header>
                             <div class="container">
@@ -223,7 +254,8 @@ class ContactsApp extends Contacts {
 
         document.body.appendChild(app); //Добовляем в ДОМ
         document.querySelector('.creat-newUser').addEventListener('click', this.modalWindowNewUser.bind(this)) //Вызываем модальное окно для содания нового юзера
-
+        document.querySelector('.contacts__search').addEventListener('input',this.searchContacts.bind(this))
+        
     }
 
     init() { /* Запускаем приложение*/
